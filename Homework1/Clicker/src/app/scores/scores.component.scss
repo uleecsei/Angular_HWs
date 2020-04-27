@@ -1,0 +1,60 @@
+@import "../../scss/variables";
+
+.container {
+  &__retry {
+    box-shadow: 3px 4px 0px 0px $umber;
+    background: linear-gradient(to bottom, $thunderbird 5%, $flamingo 100%);
+    background-color: $thunderbird;
+    border-radius: 18px;
+    border: 1px solid $tb;
+    display: inline-block;
+    cursor: pointer;
+    color: $white;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px $dark-burgundy;
+    vertical-align: middle;
+  }
+  &__retry:hover {
+    background: linear-gradient(to bottom, $flamingo 5%, $thunderbird 100%);
+    background-color: $flamingo;
+  }
+  &__retry:active {
+    position: relative;
+    top: 1px;
+  }
+  &__table {
+    border: 2px solid $totem-pole;
+    background-color: $white-rock;
+    width: 50%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  &__table td,
+  &__table th {
+    border: 1px solid $silver-chalice;
+    padding: 3px 2px;
+  }
+  &__table tbody td {
+    font-size: 13px;
+  }
+  &__table tr:nth-child(even) {
+    background: $mandys-pink;
+  }
+  &__table thead {
+    background: $totem-pole;
+  }
+  &__table thead th {
+    font-size: 19px;
+    font-weight: bold;
+    color: $white;
+    text-align: center;
+    border-left: 2px solid $totem-pole;
+  }
+  &__table thead th:first-child {
+    border-left: none;
+  }
+}

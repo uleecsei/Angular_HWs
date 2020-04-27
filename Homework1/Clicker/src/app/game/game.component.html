@@ -1,0 +1,26 @@
+<div *ngIf="!status.gameFinished; else endGame">
+  <h1 class="container__title" [hidden]="status.gameStarted">
+    {{getName()}}, press the red button to start! You have {{getSeconds()}}
+    seconds.
+  </h1>
+  <h1 class="container__title" [hidden]="!status.gameStarted">
+    Your points: {{getScore()}}
+  </h1>
+</div>
+<ng-template #endGame>
+  
+</ng-template>
+<img
+  class="container__button"
+  [src]="src"
+  alt="button"
+  (click)="clickButton()"
+  (mousedown)="onMouseDown()"
+  (mouseup)="onMouseUp()"
+/>
+<div
+  class="container__timer"
+  [hidden]="!status.gameStarted || status.gameFinished"
+>
+  {{getSeconds()}} s
+</div>

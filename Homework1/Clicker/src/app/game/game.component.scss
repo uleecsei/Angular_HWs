@@ -1,0 +1,25 @@
+@import '../../scss/variables';
+
+
+.container {
+  &__timer {
+    animation: pulsing 0.5s ease-in-out infinite alternate;
+    color: $red;
+  }
+  &__button {
+    width: 470px;
+  }
+  &__scoreboard {
+      display: none;
+  }
+}
+
+@keyframes pulsing {
+  from {
+    font-size: 40px;
+  }
+  to {
+    font-size: 80px;
+  }
+}
+
