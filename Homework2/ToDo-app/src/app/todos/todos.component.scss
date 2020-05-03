@@ -1,11 +1,47 @@
-.table {
+.todo-list {
+  &:focus {
+    outline: none;
+  }
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__left {
+    margin-top: 11px;
+    display: flex;
     width: 80%;
-    margin: 0 auto;
-    overflow: scroll;
+  }
+  &__right {
+    width: 100px;
+    display: flex;
+    justify-content: space-around;
+  }
+  &__checkbox {
+    margin-right: 10px;
+  }
+  &__text-wrapper {
+    overflow: hidden;
+  }
+  &__text {
+    vertical-align: middle;
+  }
 }
-.mat-header-cell {
-    font-size: larger;
+
+//todo-list item
+.mat-list-base .mat-list-item {
+  height: 65px;
 }
-.mat-cell {
-    font-size: large;
+
+.tab-group {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 740px) {
+  .todo-list {
+    &__left {
+      width: 60%;
+    }
+  }
 }

@@ -1,0 +1,11 @@
+<div mat-dialog-content class="dialog">
+  <p>Edit note</p>
+  <mat-form-field class="dialog__input">
+    <mat-label>To do:</mat-label>
+    <input matInput [(ngModel)]="data.title">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" (keydown.escape)="onNoClick()">Return</button>
+  <button mat-button [mat-dialog-close]="data.title" cdkFocusInitial>Ok</button>
+</div>
