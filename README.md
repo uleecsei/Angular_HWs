@@ -1,1 +1,1 @@
-# Angular_HWs
+# Angular studying homeworks
