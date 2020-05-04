@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { TodosModule } from './todos/todos.module';
+import { RouteService } from './shared/route.service';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { TodosModule } from './todos/todos.module';
     MaterialModule,
     TodosModule,
   ],
-  providers: [],
+  providers: [RouteService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

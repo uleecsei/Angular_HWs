@@ -19,17 +19,20 @@ export class TodoService {
   constructor(private http: HttpClient, private dialog: MatDialog) {}
 
   fetchTodos(): Observable<Tasks[]> {
-    return this.http
-      .get<Tasks[]>('https://jsonplaceholder.typicode.com/todos?_limit=15')
-      .pipe(
-        tap((tasks) => (this.tasks = tasks)),
-        tap(
-          (tasks) => (this.doneTasks = tasks.filter((task) => task.completed))
-        ),
-        tap(
-          (tasks) => (this.todoTasks = tasks.filter((task) => !task.completed))
-        )
-      );
+    return this.http.get<Tasks[]>('http://localhost:8083/api/todos').pipe(
+      tap((tasks) => (this.tasks = tasks)),
+      tap((tasks) => (this.doneTasks = tasks.filter((task) => task.completed))),
+      tap((tasks) => (this.todoTasks = tasks.filter((task) => !task.completed)))
+    );
+  }
+  postTodo(task: Tasks): Observable<any> {
+    return this.http.post('http://localhost:8083/api/todos', task);
+  }
+  updateTodo(id: number, title: string): Observable<any> {
+    return this.http.post('http://localhost:8083/api/todos/' + id, {title});
+  }
+  deleteTodo(id: number):Observable<any> {
+    return this.http.delete('http://localhost:8083/api/todos/' + id);
   }
   addTask(title: string) {
     let maxId = this.tasks.reduce((acc, cur): number => {
@@ -42,7 +45,16 @@ export class TodoService {
       title,
       completed: false,
     };
-    this.tasks.push(newTask);
+    this.postTodo(newTask).subscribe(
+      (data) => {
+        if (data) {
+          this.fetchTodos().subscribe();
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
     this.doneCheck();
   }
   editTask(id: number) {
@@ -55,11 +67,16 @@ export class TodoService {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.tasks.map((task) => {
-          if (task.id == id) {
-            task.title = result;
+        this.updateTodo(id, result).subscribe(
+          (data) => {
+            if (data) {
+              this.fetchTodos().subscribe();
+            }
+          },
+          (error) => {
+            console.error(error);
           }
-        });
+        );
       }
     });
     this.doneCheck();
@@ -74,7 +91,17 @@ export class TodoService {
     this.todoTasks = this.tasks.filter((task) => !task.completed);
   }
   deleteTask(id: number) {
-    this.tasks = this.tasks.filter((item) => item.id !== id);
+    this.deleteTodo(id).subscribe(
+      (data) => {
+        if (data) {
+          this.fetchTodos().subscribe();
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    // this.tasks = this.tasks.filter((item) => item.id !== id);
     this.doneCheck();
   }
 }

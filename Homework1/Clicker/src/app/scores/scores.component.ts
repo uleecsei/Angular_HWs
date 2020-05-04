@@ -12,7 +12,6 @@ export class ScoresComponent implements OnInit {
   constructor(private game: GameService) { }
 
   ngOnInit(): void {
-    this.game.scoreBoard();
     this.scoresArray = this.game.getScoresArray();
   }
   retry() {
